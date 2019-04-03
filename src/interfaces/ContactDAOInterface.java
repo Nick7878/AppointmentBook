@@ -4,13 +4,14 @@ import models.Contact;
 
 import java.util.List;
 
-public interface ContactDAOInterface {
+public interface ContactDAOInterface<T> {
 
     List<Contact> findAll();
-    List<Contact> findById();
-    List<Contact> findByName();
-//    List<Contact> findByPhoneNum();
-    boolean insertContact(Contact contact);
-    boolean updateContact(Contact contact);
-    boolean deleteEmployee(Contact contact);
+    Contact findById(int id);
+//    List<Contact> findByName(String name);
+//    List<Contact> findByPhoneNum(String phoneNum);
+//    List<Contact> findByNameAndPhoneNum(String name, String phoneNum);
+//    boolean insertContact(Contact contact);
+//    boolean updateContact(Contact contact);
+//    boolean deleteContact(int id);
 }

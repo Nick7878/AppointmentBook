@@ -3,7 +3,7 @@ package models;
 import interfaces.AppointmentDAOInterface;
 
 public class Appointment extends Contact{
-    private int id;
+    private Integer id;
     private String service;
     private String time;
     private String date;
@@ -16,7 +16,7 @@ public class Appointment extends Contact{
         stylist = style;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 

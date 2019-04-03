@@ -2,5 +2,6 @@ package models;
 
 import interfaces.AppointmentDAOInterface;
 
-public class AppointmentDAO implements AppointmentDAOInterface {
-}
+//public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
+//
+//}

@@ -5,7 +5,7 @@ import models.Contact;
 
 import java.util.List;
 
-public interface AppointmentDAOInterface {
+public interface AppointmentDAOInterface<T> {
 
     List<Appointment> findAll();
     List<Appointment> findById();
