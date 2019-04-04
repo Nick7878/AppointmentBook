@@ -20,14 +20,21 @@ public class ContactDAO implements ContactDAOInterface<Contact> {
             ResultSet rs = stmt.executeQuery("SELECT * FROM contacts");
 
             List<Contact> listOfContacts = new ArrayList<>();
-
-            if(rs.next()) {
+            while(rs.next()) {
                 listOfContacts.add(extractContactFromResultSet(rs));
             }
-
+            stmt.close();
+            rs.close();
             return listOfContacts;
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } finally {
+            try{
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+
         }
         return null;
     }
@@ -43,122 +50,177 @@ public class ContactDAO implements ContactDAOInterface<Contact> {
             if(rs.next()) {
                 contact = extractContactFromResultSet(rs);
             }
+            stmt.close();
+            rs.close();
             return contact;
         } catch (SQLException ex) {
             ex.printStackTrace();
+        } finally {
+            try{
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
         return null;
     }
-//
-//    @Override
-//    public List<Contact> findByName(String name) {
-//        Connection connection = ConnectionFactory.getConnection();
-//        try{
-//            Statement stmt = connection.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM contacts WHERE name = " + name);
-//
-//            List<Contact> listOfContacts = new ArrayList<>();
-//
-//            if(rs.next()) {
-//                listOfContacts.add(extractContactFromResultSet(rs));
-//            }
-//            return listOfContacts;
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Contact> findByPhoneNum(String phoneNum) {
-//        Connection connection = ConnectionFactory.getConnection();
-//        try{
-//            Statement stmt = connection.createStatement();
-//            ResultSet rs = stmt.executeQuery("SELECT * FROM contacts WHERE phoneNum = " + phoneNum);
-//
-//            List<Contact> listOfContacts = new ArrayList<>();
-//
-//            if(rs.next()) {
-//                listOfContacts.add(extractContactFromResultSet(rs));
-//            }
-//            return listOfContacts;
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    public List<Contact> findByNameAndPhoneNum(String name, String phoneNum) {
-//        Connection connection = ConnectionFactory.getConnection();
-//        try{
-//            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE name = ? AND phoneNum = ?");    //With multiple parameters, it's better to use PreparedStatement instead of Statement
-//            pstmt.setString(1, name);
-//            pstmt.setString(2, phoneNum);
-//            ResultSet rs = pstmt.executeQuery();
-//
-//            List<Contact> listOfContacts = new ArrayList<>();
-//            if(rs.next()) {
-//                listOfContacts.add(extractContactFromResultSet(rs));
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    public boolean insertContact(Contact contact) {
-//        Connection connection = ConnectionFactory.getConnection();
-//        try{
-//            PreparedStatement pstmt = connection.prepareStatement("INSERT  INTO contacts VALUES (NULL, ?, ?)");
-//            pstmt.setString(1, contact.getName());
-//            pstmt.setString(2, contact.getPhoneNum());
-//            int i = pstmt.executeUpdate();
-//
-//            if(i == 1) {
-//                return true;
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean updateContact(Contact contact) {
-//        Connection connection = ConnectionFactory.getConnection();
-//        try{
-//            PreparedStatement pstmt = connection.prepareStatement("UPDATE contacts SET name = ?, phoneNum = ? WHERE contact_id = ?");
-//            pstmt.setString(1, contact.getName());
-//            pstmt.setString(2, contact.getPhoneNum());
-//            pstmt.setInt(3, contact.getId());
-//            int i = pstmt.executeUpdate();
-//
-//            if(i == 1) {
-//                return true;
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return false;
-//    }
-//
-//    @Override
-//    public boolean deleteContact(int id) {
-//        Connection connection = ConnectionFactory.getConnection();
-//        try{
-//            Statement stmt = connection.createStatement();
-//            int i = stmt.executeUpdate("DELETE FROM contacts WHERE contact_id = " + id);
-//
-//            if(i == 1) {
-//                return true;
-//            }
-//        } catch (SQLException ex) {
-//            ex.printStackTrace();
-//        }
-//        return false;
-//    }
+
+    @Override
+    public List<Contact> findByName(String name) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM contacts WHERE name = '" + name + "'");
+
+            List<Contact> listOfContacts = new ArrayList<>();
+
+            while(rs.next()) {
+                listOfContacts.add(extractContactFromResultSet(rs));
+            }
+
+            stmt.close();
+            rs.close();
+            return listOfContacts;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Contact> findByPhoneNum(String phoneNum) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM contacts WHERE phoneNum = '" + phoneNum + "'");
+
+            List<Contact> listOfContacts = new ArrayList<>();
+
+            if(rs.next()) {
+                listOfContacts.add(extractContactFromResultSet(rs));
+            }
+            rs.close();
+            stmt.close();
+            return listOfContacts;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try{
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public List<Contact> findByNameAndPhoneNum(String name, String phoneNum) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM contacts WHERE name = ? AND phoneNum = ?");    //With multiple parameters, it's better to use PreparedStatement instead of Statement
+            pstmt.setString(1, name);
+            pstmt.setString(2, phoneNum);
+            ResultSet rs = pstmt.executeQuery();
+
+            List<Contact> listOfContacts = new ArrayList<>();
+            if(rs.next()) {
+                listOfContacts.add(extractContactFromResultSet(rs));
+            }
+            pstmt.close();
+            rs.close();
+            return listOfContacts;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try{
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public boolean insertContact(Contact contact) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("INSERT  INTO contacts VALUES (NULL, ?, ?)");
+            pstmt.setString(1, contact.getName());
+            pstmt.setString(2, contact.getPhoneNum());
+            int i = pstmt.executeUpdate();
+
+            if(i == 1) {
+                return true;
+            }
+            pstmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean updateContact(Contact contact, String name, String phoneNum) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("UPDATE contacts SET name = ?, phoneNum = ? WHERE contact_id = ?");
+            pstmt.setString(1, name);
+            pstmt.setString(2, phoneNum);
+            pstmt.setInt(3, contact.getId());
+            int i = pstmt.executeUpdate();
+
+            if(i == 1) {
+                return true;
+            }
+            pstmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean deleteContact(int id) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            Statement stmt = connection.createStatement();
+            int i = stmt.executeUpdate("DELETE FROM contacts WHERE contact_id = " + id);
+
+            if(i == 1) {
+                return true;
+            }
+            stmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
 
     private Contact extractContactFromResultSet(ResultSet rs) throws SQLException {
         Contact contact = new Contact();

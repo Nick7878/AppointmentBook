@@ -13,7 +13,7 @@ public class ConnectionFactory {
     public static Connection getConnection() {
         try{
             DriverManager.registerDriver(new Driver());
-            System.out.println("Success!");
+            //System.out.println("Success!");
             return DriverManager.getConnection(URL, USER, PASS);
         } catch (SQLException ex) {
             throw new RuntimeException("Error connecting to the database", ex);

@@ -34,11 +34,30 @@ public class Main {
 //        }
         ContactDAOInterface contactDAO = new ContactDAO();
         List<Contact> contacts = contactDAO.findAll();
-        for(Contact contact : contacts){
-            System.out.println(contact.getName() + ", " + contact.getPhoneNum());
-        }
+        List<Contact> contacts2 = contactDAO.findByName("Kyle");
+        List<Contact> contacts3 = contactDAO.findByPhoneNum("609-787-7878");
+        List<Contact> contacts4 = contactDAO.findByNameAndPhoneNum("Jack", "609-797-7979");
 
-        System.out.println(contactDAO.findById(1).getName());
+        //contactDAO.insertContact(new Contact("Kyle", "609-808-8080"));
+        //contactDAO.updateContact(contacts2.get(0), "Jake", contacts2.get(0).getPhoneNum());
+        //contactDAO.deleteContact(contacts2.get(0).getId());
+
+
+//        for(Contact contact : contacts){
+//            System.out.println(contact.getName() + ", " + contact.getPhoneNum());
+//        }
+//        for(Contact contact : contacts2){
+//            System.out.println(contact.getName() + ", " + contact.getPhoneNum());
+//        }
+//        for(Contact contact : contacts3){
+//            System.out.println(contact.getName() + ", " + contact.getPhoneNum());
+//        }
+//        for(Contact contact : contacts4){
+//            System.out.println(contact.getName() + ", " + contact.getPhoneNum());
+//        }
+
+        //System.out.println(contactDAO.findById(1).getName());
+
 
     }
 }
