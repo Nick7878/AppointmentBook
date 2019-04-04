@@ -9,11 +9,23 @@ public class Appointment extends Contact{
     private String date;
     private String stylist;
 
-    public Appointment(String serv, String tim, String d, String style){
-        service = serv;
-        time = tim;
-        date = d;
-        stylist = style;
+    public Appointment(String service, String time, String date, String stylist){
+        this.service = service;
+        this.time = time;
+        this.date = date;
+        this.stylist = stylist;
+    }
+
+    public Appointment(Integer id, String service, String time, String date, String stylist) {
+        this.id = id;
+        this.service = service;
+        this.time = time;
+        this.date = date;
+        this.stylist = stylist;
+    }
+
+    public Appointment() {
+
     }
 
     public Integer getId() {

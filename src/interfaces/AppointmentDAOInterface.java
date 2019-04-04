@@ -8,7 +8,7 @@ import java.util.List;
 public interface AppointmentDAOInterface<T> {
 
     List<Appointment> findAll();
-    List<Appointment> findById();
+    Appointment findById(int id);
     List<Appointment> findByService();
     List<Appointment> findByDate();
     List<Appointment> findByStylist();
