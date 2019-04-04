@@ -83,8 +83,88 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         return null;
     }
 
-    public List<Appointment> findByDate() {
-        
+    public List<Appointment> findByDate(String date) {
+        Connection connection = ConnectionFactory.getConnection();
+        List<Appointment> listOfAppointments = new ArrayList<>();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE date = ?");
+            pstmt.setString(1, date);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                listOfAppointments.add(extractAppointmentFromResultSet(rs));
+            }
+            pstmt.close();
+            rs.close();
+            return listOfAppointments;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return listOfAppointments;
+    }
+
+    public List<Appointment> findByStylist(String stylist) {
+        Connection connection = ConnectionFactory.getConnection();
+        List<Appointment> listOfAppointments = new ArrayList<>();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE stylist = ?");
+            pstmt.setString(1, stylist);
+            ResultSet rs = pstmt.executeQuery();
+
+            while(rs.next()) {
+                listOfAppointments.add(extractAppointmentFromResultSet(rs));
+            }
+            pstmt.close();
+            rs.close();
+            return listOfAppointments;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return listOfAppointments;
+    }
+
+    public boolean insertAppointment(Appointment appointment) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments VALUES(NULL, ?, ?, ? ,?)")
+            pstmt.setString(1, appointment.getService());
+            pstmt.setString(2, appointment.getTime());
+            pstmt.setString(3, appointment.getDate());
+            pstmt.setString(4, appointment.getStylist());
+            int i = pstmt.executeUpdate();
+            if(i == 1) {
+                return true;
+            }
+            pstmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public boolean updateAppointment(Appointment appointment) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("UPDATE appointments SET ");
+        }
     }
 
     private Appointment extractAppointmentFromResultSet(ResultSet rs) throws SQLException {
