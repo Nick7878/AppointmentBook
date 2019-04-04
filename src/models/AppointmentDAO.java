@@ -2,10 +2,8 @@ package models;
 
 import interfaces.AppointmentDAOInterface;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import javax.xml.transform.Result;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,6 +56,35 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
             }
         }
         return null;
+    }
+
+    public List<Appointment> findByService(String service) {
+        Connection connection = ConnectionFactory.getConnection();
+        try{
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE service = ?");
+            pstmt.setString(1, service);
+            ResultSet rs = pstmt.executeQuery();
+            List<Appointment> listOfAppointments = new ArrayList<>();
+            while(rs.next()) {
+                listOfAppointments.add(extractAppointmentFromResultSet(rs));
+            }
+            pstmt.close();
+            rs.close();
+            return listOfAppointments;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
+    public List<Appointment> findByDate() {
+        
     }
 
     private Appointment extractAppointmentFromResultSet(ResultSet rs) throws SQLException {
