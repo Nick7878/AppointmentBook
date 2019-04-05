@@ -138,11 +138,14 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     public boolean insertAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try{
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments VALUES(NULL, ?, ?, ? ,?)")
-            pstmt.setString(1, appointment.getService());
-            pstmt.setString(2, appointment.getTime());
-            pstmt.setString(3, appointment.getDate());
-            pstmt.setString(4, appointment.getStylist());
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ? ,?, ?)");
+            pstmt.setString(1, appointment.getName());
+            pstmt.setString(2, appointment.getService());
+            pstmt.setString(3, appointment.getPhoneNum());
+            pstmt.setString(4, appointment.getTime());
+            pstmt.setString(5, appointment.getDate());
+            pstmt.setString(6, appointment.getStylist());
+            pstmt.setInt(7, appointment.getContact_id());
             int i = pstmt.executeUpdate();
             if(i == 1) {
                 return true;
@@ -160,11 +163,33 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         return false;
     }
 
-    public boolean updateAppointment(Appointment appointment) {
+    public boolean updateAppointment(Appointment appointment, String name, String service, String phoneNum, String time, String date, String stylist, int contact_id) {
         Connection connection = ConnectionFactory.getConnection();
         try{
-            PreparedStatement pstmt = connection.prepareStatement("UPDATE appointments SET ");
+            PreparedStatement pstmt = connection.prepareStatement("UPDATE appointments SET name = ?, service = ?, phoneNum = ?, time = ?, date = ?, stylist = ?, contact_id = ? WHERE appointment_id = ?");
+            pstmt.setString(1, name);
+            pstmt.setString(2, service);
+            pstmt.setString(3, phoneNum);
+            pstmt.setString(4, time);
+            pstmt.setString(5, date);
+            pstmt.setString(6, stylist);
+            pstmt.setInt(7, appointment.getContact_id());
+            pstmt.setInt(8, appointment.getId());
+            int i = pstmt.executeUpdate();
+            if(i == 1) {
+                return true;
+            }
+            pstmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex){
+                ex.printStackTrace();
+            }
         }
+        return false;
     }
 
     private Appointment extractAppointmentFromResultSet(ResultSet rs) throws SQLException {

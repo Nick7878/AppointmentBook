@@ -8,12 +8,23 @@ public class Appointment extends Contact{
     private String time;
     private String date;
     private String stylist;
+    private Integer contact_id;
 
     public Appointment(String service, String time, String date, String stylist){
         this.service = service;
         this.time = time;
         this.date = date;
         this.stylist = stylist;
+        this.contact_id = null;
+    }
+
+    public Appointment(Integer id, String service, String time, String date, String stylist, Integer contact_id) {
+        this.id = id;
+        this.service = service;
+        this.time = time;
+        this.date = date;
+        this.stylist = stylist;
+        this.contact_id = contact_id;
     }
 
     public Appointment(Integer id, String service, String time, String date, String stylist) {
@@ -22,6 +33,7 @@ public class Appointment extends Contact{
         this.time = time;
         this.date = date;
         this.stylist = stylist;
+        this.contact_id = null;
     }
 
     public Appointment() {
@@ -30,6 +42,10 @@ public class Appointment extends Contact{
 
     public Integer getId() {
         return id;
+    }
+
+    public Integer getContact_id() {
+        return contact_id;
     }
 
     public String getService() {

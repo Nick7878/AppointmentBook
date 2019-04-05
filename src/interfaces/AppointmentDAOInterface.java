@@ -9,6 +9,7 @@ public interface AppointmentDAOInterface<T> {
 
     List<Appointment> findAll();
     Appointment findById(int id);
+    List<Appointment> findByContactId(int contact_id);
     List<Appointment> findByService(String service);
     List<Appointment> findByDate(String date);
     List<Appointment> findByStylist(String stylist);
