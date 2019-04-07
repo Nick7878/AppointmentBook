@@ -58,6 +58,32 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         return null;
     }
 
+    public List<Appointment> findByContactId(int contact_id) {
+        Connection connection = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE contact_id = ?");
+            ResultSet rs = pstmt.executeQuery();
+            pstmt.setInt(1, contact_id);
+            List<Appointment> listOfAppointments = new ArrayList<>();
+
+            while(rs.next()) {
+                listOfAppointments.add(extractAppointmentFromResultSet(rs));
+            }
+            pstmt.close();
+            rs.close();
+            return listOfAppointments;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        }
+        return null;
+    }
+
     public List<Appointment> findByService(String service) {
         Connection connection = ConnectionFactory.getConnection();
         try{
@@ -186,6 +212,28 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
             try {
                 connection.close();
             } catch (SQLException ex){
+                ex.printStackTrace();
+            }
+        }
+        return false;
+    }
+
+    public boolean deleteAppointment(Appointment appointment) {
+        Connection connection = ConnectionFactory.getConnection();
+        try {
+            PreparedStatement pstmt = connection.prepareStatement("DELETE FROM appointments WHERE appointment_id = ?");
+            pstmt.setInt(1, appointment.getId());
+            int i = pstmt.executeUpdate();
+            if(i == 1) {
+                return true;
+            }
+            pstmt.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        } finally {
+            try {
+                connection.close();
+            } catch(SQLException ex) {
                 ex.printStackTrace();
             }
         }
