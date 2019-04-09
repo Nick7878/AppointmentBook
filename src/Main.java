@@ -1,6 +1,7 @@
 import interfaces.ContactDAOInterface;
 import models.Contact;
 import models.ContactDAO;
+import views.MainView;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -32,11 +33,11 @@ public class Main {
 //            Logger lgr = Logger.getLogger(Main.class.getName());
 //            lgr.log(Level.SEVERE, ex.getMessage(), ex);
 //        }
-        ContactDAOInterface contactDAO = new ContactDAO();
-        List<Contact> contacts = contactDAO.findAll();
-        List<Contact> contacts2 = contactDAO.findByName("Kyle");
-        List<Contact> contacts3 = contactDAO.findByPhoneNum("609-787-7878");
-        List<Contact> contacts4 = contactDAO.findByNameAndPhoneNum("Jack", "609-797-7979");
+//        ContactDAOInterface contactDAO = new ContactDAO();
+//        List<Contact> contacts = contactDAO.findAll();
+//        List<Contact> contacts2 = contactDAO.findByName("Kyle");
+//        List<Contact> contacts3 = contactDAO.findByPhoneNum("609-787-7878");
+//        List<Contact> contacts4 = contactDAO.findByNameAndPhoneNum("Jack", "609-797-7979");
 
         //contactDAO.insertContact(new Contact("Kyle", "609-808-8080"));
         //contactDAO.updateContact(contacts2.get(0), "Jake", contacts2.get(0).getPhoneNum());
@@ -58,6 +59,6 @@ public class Main {
 
         //System.out.println(contactDAO.findById(1).getName());
 
-
+        MainView mv = new MainView();
     }
 }
