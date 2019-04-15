@@ -62,8 +62,8 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         Connection connection = ConnectionFactory.getConnection();
         try {
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE contact_id = ?");
-            ResultSet rs = pstmt.executeQuery();
             pstmt.setInt(1, contact_id);
+            ResultSet rs = pstmt.executeQuery();
             List<Appointment> listOfAppointments = new ArrayList<>();
 
             while(rs.next()) {
@@ -243,10 +243,13 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     private Appointment extractAppointmentFromResultSet(ResultSet rs) throws SQLException {
         Appointment appointment = new Appointment();
         appointment.setId(rs.getInt("appointment_id")); //Column name may need to be changed
+        appointment.setName(rs.getString("name"));
         appointment.setService(rs.getString("service"));
+        appointment.setPhoneNum(rs.getString("phoneNum"));
         appointment.setTime(rs.getString("time"));
         appointment.setDate(rs.getString("date"));
         appointment.setStylist(rs.getString("stylist"));
+        appointment.setContact_id(rs.getInt("contact_id"));
 
         return appointment;
     }
