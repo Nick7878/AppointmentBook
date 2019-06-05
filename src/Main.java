@@ -66,6 +66,8 @@ public class Main {
         List<Appointment> appointments = appointmentDAO.findAll();
         Appointment appointmentById = appointmentDAO.findById(2);
         System.out.println("name: " + appointmentById.getName());
+        appointmentById.setName("Robert");
+        appointmentDAO.updateAppointment(appointmentById);
         List<Appointment> appointments2 = appointmentDAO.findByContactId(2);
 
         for(Appointment appointment : appointments) {

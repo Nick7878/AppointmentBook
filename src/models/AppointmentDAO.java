@@ -189,16 +189,16 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         return false;
     }
 
-    public boolean updateAppointment(Appointment appointment, String name, String service, String phoneNum, String time, String date, String stylist, int contact_id) {
+    public boolean updateAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try{
             PreparedStatement pstmt = connection.prepareStatement("UPDATE appointments SET name = ?, service = ?, phoneNum = ?, time = ?, date = ?, stylist = ?, contact_id = ? WHERE appointment_id = ?");
-            pstmt.setString(1, name);
-            pstmt.setString(2, service);
-            pstmt.setString(3, phoneNum);
-            pstmt.setString(4, time);
-            pstmt.setString(5, date);
-            pstmt.setString(6, stylist);
+            pstmt.setString(1, appointment.getName());
+            pstmt.setString(2, appointment.getService());
+            pstmt.setString(3, appointment.getPhoneNum());
+            pstmt.setString(4, appointment.getTime());
+            pstmt.setString(5, appointment.getDate());
+            pstmt.setString(6, appointment.getStylist());
             pstmt.setInt(7, appointment.getContact_id());
             pstmt.setInt(8, appointment.getId());
             int i = pstmt.executeUpdate();

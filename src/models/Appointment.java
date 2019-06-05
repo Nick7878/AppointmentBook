@@ -2,6 +2,8 @@ package models;
 
 import interfaces.AppointmentDAOInterface;
 
+import java.util.List;
+
 public class Appointment{
     private Integer id;
     private String name;
@@ -11,6 +13,7 @@ public class Appointment{
     private String date;
     private String stylist;
     private Integer contact_id;
+    private AppointmentDAOInterface appointmentDAO;
 
     public Appointment(String name, String service, String phoneNum, String time, String date, String stylist){
         this.name = name;
@@ -20,6 +23,7 @@ public class Appointment{
         this.date = date;
         this.stylist = stylist;
         this.contact_id = null;
+        appointmentDAO = new AppointmentDAO();
     }
 
     public Appointment(Integer id, String name, String service, String phoneNum, String time, String date, String stylist, Integer contact_id) {
@@ -31,10 +35,11 @@ public class Appointment{
         this.date = date;
         this.stylist = stylist;
         this.contact_id = contact_id;
+        appointmentDAO = new AppointmentDAO();
     }
 
     public Appointment() {
-
+        appointmentDAO = new AppointmentDAO();
     }
 
     public String getPhoneNum() {
@@ -100,5 +105,4 @@ public class Appointment{
     public void setStylist(String stylist) {
         this.stylist = stylist;
     }
-
 }
