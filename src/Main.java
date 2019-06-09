@@ -1,3 +1,4 @@
+import controllers.MainController;
 import interfaces.AppointmentDAOInterface;
 import interfaces.ContactDAOInterface;
 import models.Appointment;
@@ -81,5 +82,6 @@ public class Main {
 
 
         MainView mv = new MainView();
+        MainController mc = new MainController(mv);
     }
 }
