@@ -1,10 +1,7 @@
 import controllers.MainController;
 import interfaces.AppointmentDAOInterface;
 import interfaces.ContactDAOInterface;
-import models.Appointment;
-import models.AppointmentDAO;
-import models.Contact;
-import models.ContactDAO;
+import models.*;
 import views.MainView;
 
 import java.sql.Connection;
@@ -81,7 +78,11 @@ public class Main {
 
 
 
-        MainView mv = new MainView();
-        MainController mc = new MainController(mv);
+        MainView theView = new MainView();
+        AppointmentAndContactData theModel = new AppointmentAndContactData();
+        MainController theController = new MainController(theView, theModel);
+
+
+        theView.setVisible(true);
     }
 }

@@ -16,8 +16,8 @@ public class MainController {
         mainView = new MainView();
     }
 
-    public MainController(MainView mView) {
-        appointmentAndContactData = new AppointmentAndContactData();
+    public MainController(MainView mView, AppointmentAndContactData theModel) {
+        appointmentAndContactData = theModel;
         mainView = mView;
         mainView.buildView(appointmentAndContactData.getAppointments());
     }

@@ -10,18 +10,18 @@ import java.util.List;
 public class MainView extends JFrame {
     private JPanel contentPanel;
     private JTable appointmentTable;
+    private JButton addAppointmentButton;
+    private JButton editAppointmentButton;
+    private JButton deleteAppointmentButton;
+    private JButton contactsButton;
 
 
     public MainView() {
         this.contentPanel = new JPanel(new FlowLayout());
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                //setUpAppointmentTable();
-                drawWindow();
-                //addComponentsToFrame();
-            }
-        });
+        this.addAppointmentButton = new JButton("Add Appointment");
+        this.editAppointmentButton = new JButton("Edit Appointment");
+        this.deleteAppointmentButton = new JButton("Delete Appointment");
+        this.contactsButton = new JButton(("Contacts"));
     }
 
     public void buildView(List<Appointment> appointments) {
@@ -36,7 +36,10 @@ public class MainView extends JFrame {
     }
 
     public void addComponentsToFrame() {
-        contentPanel.add(new Button("Add Appointment"));
+        contentPanel.add(addAppointmentButton);
+        contentPanel.add(editAppointmentButton);
+        contentPanel.add(deleteAppointmentButton);
+        contentPanel.add(contactsButton);
         contentPanel.add(new JScrollPane(appointmentTable));
     }
 
@@ -50,20 +53,19 @@ public class MainView extends JFrame {
 
         add(contentPanel, BorderLayout.CENTER);
         pack();
-        setVisible(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
-    //Will take in a List parameter of type Appointment. For now, just placeholder data
     public void setUpAppointmentTable(List<Appointment> appointments) {
-        String[][] placeholderData = {
-//                {"Nick", "Cut", "787-787-7878", "3:40 PM", "06/11/2019", "Cecilia"},
-//                {"Jake", "Perm", "797-797-7979", "4:40 PM", "06/11/2019", "Cecilia"}
-        };
-
         String[] columnNames = {"Name", "Service", "Phone Number", "Time", "Date", "Stylist"};
 
-        appointmentTable = new JTable(setUpAppointmentTableValues(appointments), columnNames);
+        appointmentTable = new JTable(setUpAppointmentTableValues(appointments), columnNames){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+
         TableColumnModel columnModel = appointmentTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
         columnModel.getColumn(1).setPreferredWidth(100);
