@@ -34,7 +34,7 @@ public class AddAppointmentView extends JFrame {
             @Override
             public void run() {
                 drawWindow();
-                addComponentsToPanel();
+                addComponentsToPanels();
             }
         });
     }
@@ -61,7 +61,7 @@ public class AddAppointmentView extends JFrame {
         this.cancelButton = new JButton("Cancel");
     }
 
-    private void addComponentsToPanel() {
+    private void addComponentsToPanels() {
         this.labelAndTextFieldContentPane.setLayout(this.layout);
         this.layout.setAutoCreateGaps(true);
         this.layout.setAutoCreateContainerGaps(true);

@@ -25,6 +25,10 @@ public class MainController {
         this.mainView.buildView(appointmentAndContactData.getAppointments());
 
         this.mainView.addAddAppointmentButtonListener(new AddAppointmentButtonListener());
+        this.mainView.addEditAppointmentButtonListener(new EditAppointmentButtonListener());
+        this.mainView.addDeleteAppointmentButtonListener(new DeleteAppointmentButtonListener());
+        this.mainView.addContactsButtonListener(new ContactsButtonListener());
+
     }
 
     class AddAppointmentButtonListener implements ActionListener {
@@ -35,5 +39,29 @@ public class MainController {
             theAddAppointmentView.setVisible(true);
         }
 
+    }
+
+    class EditAppointmentButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Edit Button Tapped");
+        }
+    }
+
+    class DeleteAppointmentButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Delete Button Tapped");
+        }
+    }
+
+    class ContactsButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Contact Button Tapped");
+        }
     }
 }

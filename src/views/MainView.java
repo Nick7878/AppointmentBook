@@ -47,7 +47,7 @@ public class MainView extends JFrame {
     private void drawWindow() {
         JFrame.setDefaultLookAndFeelDecorated(true);
         setTitle("Appointment Book");
-        setPreferredSize(new Dimension(500, 500));
+        setPreferredSize(new Dimension(550, 550));
         setResizable(true);
         setLayout(new BorderLayout());
         setLocationRelativeTo(null);
