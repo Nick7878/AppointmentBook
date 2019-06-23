@@ -3,6 +3,7 @@ package views;
 import models.Appointment;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -16,13 +17,20 @@ public class MainView extends JFrame {
     private JButton deleteAppointmentButton;
     private JButton contactsButton;
 
+    private DefaultTableModel tableModel;
+
 
     public MainView() {
+        initializeComponents();
+    }
+
+    private void initializeComponents() {
         this.contentPanel = new JPanel(new FlowLayout());
         this.addAppointmentButton = new JButton("Add Appointment");
         this.editAppointmentButton = new JButton("Edit Appointment");
         this.deleteAppointmentButton = new JButton("Delete Appointment");
         this.contactsButton = new JButton(("Contacts"));
+        this.tableModel = new DefaultTableModel();
     }
 
     public void buildView(List<Appointment> appointments) {
@@ -59,13 +67,24 @@ public class MainView extends JFrame {
 
     public void setUpAppointmentTable(List<Appointment> appointments) {
         String[] columnNames = {"Name", "Service", "Phone Number", "Time", "Date", "Stylist"};
+        String[][] rowData = setUpAppointmentTableValues(appointments);
 
-        appointmentTable = new JTable(setUpAppointmentTableValues(appointments), columnNames){
+        appointmentTable = new JTable(){
             @Override
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+
+        for(String columnName : columnNames) {
+            tableModel.addColumn(columnName);
+        }
+
+        for(int row = 0; row < rowData.length; row++) {
+            tableModel.addRow(rowData[row]);
+        }
+
+        appointmentTable.setModel(tableModel);
 
         TableColumnModel columnModel = appointmentTable.getColumnModel();
         columnModel.getColumn(0).setPreferredWidth(100);
@@ -106,6 +125,10 @@ public class MainView extends JFrame {
             }
         }
         return appointmentData;
+    }
+
+    public void updateTableValues(Appointment app) {
+        tableModel.addRow(app.putAppointmentDataInArray());
     }
 
     public void addAddAppointmentButtonListener(ActionListener listenerForAddAppointmentButton) {

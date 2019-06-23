@@ -22,4 +22,16 @@ public class AppointmentAndContactData {
     public List<Appointment> getAppointments() {
         return appointments;
     }
+
+    public AppointmentDAO getAppointmentDAO() {
+        return appointmentDAO;
+    }
+
+    public ContactDAO getContactDAO() {
+        return contactDAO;
+    }
+
+    public void addAppointmentToAppointments(Appointment app) {
+        appointments.add(app);
+    }
 }

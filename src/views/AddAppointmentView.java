@@ -2,6 +2,7 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class AddAppointmentView extends JFrame {
     //JPanels
@@ -29,6 +30,10 @@ public class AddAppointmentView extends JFrame {
     private JButton cancelButton;
 
     public AddAppointmentView() {
+
+    }
+
+    public void buildView() {
         initializeComponents();
         SwingUtilities.invokeLater(new Runnable() {
             @Override
@@ -103,4 +108,38 @@ public class AddAppointmentView extends JFrame {
         pack();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
+
+    public void addAddButtonListener(ActionListener listenerForAddButton) {
+        addButton.addActionListener(listenerForAddButton);
+    }
+
+    public void addCancelButtonListener(ActionListener listenerForCancelButton) {
+        cancelButton.addActionListener(listenerForCancelButton);
+    }
+
+    public String getNameInput() {
+        return nameTextField.getText();
+    }
+
+    public String getServiceInput() {
+        return serviceTextField.getText();
+    }
+
+    public String getPhoneNumberInput() {
+        return phoneNumberTextField.getText();
+    }
+
+    public String getTimeInput() {
+        return timeTextField.getText();
+    }
+
+    public String getDateInput() {
+        return dateTextField.getText();
+    }
+
+    public String getStylistInput() {
+        return stylistTextField.getText();
+    }
+
+
 }

@@ -24,7 +24,7 @@ public class MainController {
         this.mainView = mView;
         this.mainView.buildView(appointmentAndContactData.getAppointments());
 
-        this.mainView.addAddAppointmentButtonListener(new AddAppointmentButtonListener());
+        this.mainView.addAddAppointmentButtonListener(new AddAppointmentButtonListener(this.appointmentAndContactData));
         this.mainView.addEditAppointmentButtonListener(new EditAppointmentButtonListener());
         this.mainView.addDeleteAppointmentButtonListener(new DeleteAppointmentButtonListener());
         this.mainView.addContactsButtonListener(new ContactsButtonListener());
@@ -33,9 +33,16 @@ public class MainController {
 
     class AddAppointmentButtonListener implements ActionListener {
 
+        private AppointmentAndContactData model;
+
+        public AddAppointmentButtonListener(AppointmentAndContactData model) {
+            this.model = model;
+        }
+
         @Override
         public void actionPerformed(ActionEvent e) {
             AddAppointmentView theAddAppointmentView = new AddAppointmentView();
+            AddAppointmentController theAddAppointmentController = new AddAppointmentController(theAddAppointmentView, mainView, this.model);
             theAddAppointmentView.setVisible(true);
         }
 

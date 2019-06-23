@@ -105,4 +105,9 @@ public class Appointment{
     public void setStylist(String stylist) {
         this.stylist = stylist;
     }
+
+    public String[] putAppointmentDataInArray() {
+        String[] appointmentDataArray = {getName(), getService(), getPhoneNum(), getTime(), getDate(), getStylist()};
+        return appointmentDataArray;
+    }
 }

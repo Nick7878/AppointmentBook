@@ -164,14 +164,15 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     public boolean insertAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try{
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ? ,?, ?)");
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ? ,?, NULL)");
             pstmt.setString(1, appointment.getName());
             pstmt.setString(2, appointment.getService());
             pstmt.setString(3, appointment.getPhoneNum());
             pstmt.setString(4, appointment.getTime());
             pstmt.setString(5, appointment.getDate());
             pstmt.setString(6, appointment.getStylist());
-            pstmt.setInt(7, appointment.getContact_id());
+            //ConactID will be null for now, until I fully implement contacts
+            //pstmt.setInt(7, appointment.getContact_id());
             int i = pstmt.executeUpdate();
             if(i == 1) {
                 return true;
