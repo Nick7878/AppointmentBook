@@ -5,6 +5,7 @@ import models.Appointment;
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 public class MainView extends JFrame {
@@ -30,12 +31,12 @@ public class MainView extends JFrame {
             public void run() {
                 setUpAppointmentTable(appointments);
                 drawWindow();
-                addComponentsToFrame();
+                addComponentsToPanel();
             }
         });
     }
 
-    public void addComponentsToFrame() {
+    public void addComponentsToPanel() {
         contentPanel.add(addAppointmentButton);
         contentPanel.add(editAppointmentButton);
         contentPanel.add(deleteAppointmentButton);
@@ -106,4 +107,21 @@ public class MainView extends JFrame {
         }
         return appointmentData;
     }
+
+    public void addAddAppointmentButtonListener(ActionListener listenerForAddAppointmentButton) {
+        addAppointmentButton.addActionListener(listenerForAddAppointmentButton);
+    }
+
+    public void addEditAppointmentButtonListener(ActionListener listenerForEditAppointmentButton) {
+        editAppointmentButton.addActionListener(listenerForEditAppointmentButton);
+    }
+
+    public void addDeleteAppointmentButtonListener(ActionListener listenerForDeleteAppointmentButton) {
+        deleteAppointmentButton.addActionListener(listenerForDeleteAppointmentButton);
+    }
+
+    public void addContactsButtonListener(ActionListener listenerForContactsButton) {
+        contactsButton.addActionListener(listenerForContactsButton);
+    }
+
 }
