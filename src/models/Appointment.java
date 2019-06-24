@@ -110,4 +110,13 @@ public class Appointment{
         String[] appointmentDataArray = {getName(), getService(), getPhoneNum(), getTime(), getDate(), getStylist()};
         return appointmentDataArray;
     }
+
+    public void setAppointmentWithArray(String[] appointmentFields) {
+        this.setName(appointmentFields[0]);
+        this.setService(appointmentFields[1]);
+        this.setPhoneNum(appointmentFields[2]);
+        this.setTime(appointmentFields[3]);
+        this.setDate(appointmentFields[4]);
+        this.setStylist(appointmentFields[5]);
+    }
 }

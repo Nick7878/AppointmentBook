@@ -34,4 +34,8 @@ public class AppointmentAndContactData {
     public void addAppointmentToAppointments(Appointment app) {
         appointments.add(app);
     }
+
+    public void removeAppointmentFromAppointments(Appointment app) {
+        appointments.remove(app);
+    }
 }
