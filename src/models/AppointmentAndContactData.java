@@ -23,6 +23,10 @@ public class AppointmentAndContactData {
         return appointments;
     }
 
+    public Appointment getAppointmentFromAppointmentsListWithIndex(int index) {
+        return appointments.get(index);
+    }
+
     public AppointmentDAO getAppointmentDAO() {
         return appointmentDAO;
     }

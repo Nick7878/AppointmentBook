@@ -61,7 +61,7 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Delete Button Tapped");
-            Appointment appointmentToBeDeleted = mainView.deleteAppointmentFromSelectedRow();
+            Appointment appointmentToBeDeleted = mainView.deleteAppointmentFromSelectedRow(appointmentAndContactData.getAppointments());
             appointmentAndContactData.removeAppointmentFromAppointments(appointmentToBeDeleted);
             appointmentAndContactData.getAppointmentDAO().deleteAppointment(appointmentToBeDeleted);
         }

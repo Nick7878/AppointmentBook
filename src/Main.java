@@ -60,21 +60,21 @@ public class Main {
 
         //System.out.println(contactDAO.findById(1).getName());
 
-        AppointmentDAOInterface appointmentDAO = new AppointmentDAO();
-        List<Appointment> appointments = appointmentDAO.findAll();
-        Appointment appointmentById = appointmentDAO.findById(2);
-        System.out.println("name: " + appointmentById.getName());
-        appointmentById.setName("Robert");
-        appointmentDAO.updateAppointment(appointmentById);
-        List<Appointment> appointments2 = appointmentDAO.findByContactId(2);
-
-        for(Appointment appointment : appointments) {
-            System.out.println(appointment.getId() + ", " + appointment.getName() + ", " + appointment.getService() + ", " + appointment.getPhoneNum() + ", " + appointment.getTime() + ", " + appointment.getDate() + ", " + appointment.getStylist());
-        }
-
-        for(Appointment appointment : appointments2) {
-            System.out.println("name: " + appointment.getName() + ", Contact_id: " + appointment.getContact_id());
-        }
+//        AppointmentDAOInterface appointmentDAO = new AppointmentDAO();
+//        List<Appointment> appointments = appointmentDAO.findAll();
+//        Appointment appointmentById = appointmentDAO.findById(2);
+//        System.out.println("name: " + appointmentById.getName());
+//        appointmentById.setName("Robert");
+//        appointmentDAO.updateAppointment(appointmentById);
+//        List<Appointment> appointments2 = appointmentDAO.findByContactId(2);
+//
+//        for(Appointment appointment : appointments) {
+//            System.out.println(appointment.getId() + ", " + appointment.getName() + ", " + appointment.getService() + ", " + appointment.getPhoneNum() + ", " + appointment.getTime() + ", " + appointment.getDate() + ", " + appointment.getStylist());
+//        }
+//
+//        for(Appointment appointment : appointments2) {
+//            System.out.println("name: " + appointment.getName() + ", Contact_id: " + appointment.getContact_id());
+//        }
 
 
 
