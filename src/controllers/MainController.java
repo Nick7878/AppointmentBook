@@ -6,6 +6,7 @@ import models.Contact;
 import views.AddAppointmentView;
 import views.MainView;
 
+import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -61,9 +62,12 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Delete Button Tapped");
-            Appointment appointmentToBeDeleted = mainView.deleteAppointmentFromSelectedRow(appointmentAndContactData.getAppointments());
-            appointmentAndContactData.removeAppointmentFromAppointments(appointmentToBeDeleted);
-            appointmentAndContactData.getAppointmentDAO().deleteAppointment(appointmentToBeDeleted);
+            int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this appointment?");
+            if(confirmResult == JOptionPane.YES_OPTION) {
+                Appointment appointmentToBeDeleted = mainView.deleteAppointmentFromSelectedRow(appointmentAndContactData.getAppointments());
+                appointmentAndContactData.removeAppointmentFromAppointments(appointmentToBeDeleted);
+                appointmentAndContactData.getAppointmentDAO().deleteAppointment(appointmentToBeDeleted);
+            }
         }
     }
 
