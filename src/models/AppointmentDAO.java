@@ -174,6 +174,8 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
             //ConactID will be null for now, until I fully implement contacts
             //pstmt.setInt(7, appointment.getContact_id());
 
+            System.out.println("Branch Test");
+
             int i = pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
             rs.next();
