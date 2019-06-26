@@ -2,13 +2,12 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 
-public class EditAppointmentView extends JFrame {
+public abstract class AbstractAddEditView extends JFrame {
     //JPanels
-    private JPanel mainContentPane;
+    public JPanel mainContentPane;
     private JPanel labelAndTextFieldContentPane;
-    private JPanel buttonContentPane;
+    public JPanel buttonContentPane;
     //Layouts
     private GroupLayout layout;
     //JLabels
@@ -26,10 +25,9 @@ public class EditAppointmentView extends JFrame {
     private JTextField dateTextField;
     private JTextField stylistTextField;
     //JButtons
-    private  JButton saveButton;
-    private JButton cancelButton;
+    public JButton cancelButton;
 
-    public EditAppointmentView() {
+    public AbstractAddEditView() {
 
     }
 
@@ -44,7 +42,7 @@ public class EditAppointmentView extends JFrame {
         });
     }
 
-    private void initializeComponents() {
+    public void initializeComponents() {
         this.mainContentPane = new JPanel();
         this.labelAndTextFieldContentPane = new JPanel();
         this.buttonContentPane = new JPanel();
@@ -62,23 +60,10 @@ public class EditAppointmentView extends JFrame {
         this.timeTextField = new JTextField(10);
         this.dateTextField = new JTextField(10);
         this.stylistTextField = new JTextField(10);
-        this.saveButton = new JButton("Save");
         this.cancelButton = new JButton("Cancel");
     }
 
-    private void drawWindow() {
-        JFrame.setDefaultLookAndFeelDecorated(true);
-        setTitle("Edit Appointment");
-        setPreferredSize(new Dimension(300, 280));
-        setResizable(false);
-        setLocationRelativeTo(null);
-
-        add(this.mainContentPane);
-        pack();
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    }
-
-    private void addComponentsToPanels() {
+    public void addComponentsToPanels() {
         this.labelAndTextFieldContentPane.setLayout(this.layout);
         this.layout.setAutoCreateGaps(true);
         this.layout.setAutoCreateContainerGaps(true);
@@ -102,10 +87,36 @@ public class EditAppointmentView extends JFrame {
 
         layout.setVerticalGroup(verticalGroup);
 
-        this.buttonContentPane.add(this.saveButton);
-        this.buttonContentPane.add(this.cancelButton);
+//        this.buttonContentPane.add(this.addButton);
+//        this.buttonContentPane.add(this.cancelButton);
 
         this.mainContentPane.add(this.labelAndTextFieldContentPane);
         this.mainContentPane.add(this.buttonContentPane);
+    }
+
+    public abstract void drawWindow();
+
+    public String getNameInput() {
+        return nameTextField.getText();
+    }
+
+    public String getServiceInput() {
+        return serviceTextField.getText();
+    }
+
+    public String getPhoneNumberInput() {
+        return phoneNumberTextField.getText();
+    }
+
+    public String getTimeInput() {
+        return timeTextField.getText();
+    }
+
+    public String getDateInput() {
+        return dateTextField.getText();
+    }
+
+    public String getStylistInput() {
+        return stylistTextField.getText();
     }
 }
