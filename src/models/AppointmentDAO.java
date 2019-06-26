@@ -177,7 +177,6 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
             int i = pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();
             rs.next();
-            System.out.println(rs.getInt(1));
             if(i == 1) {
                 return rs.getInt(1);
             }
