@@ -2,6 +2,7 @@ package views;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public abstract class AbstractAddEditView extends JFrame {
     //JPanels
@@ -25,7 +26,7 @@ public abstract class AbstractAddEditView extends JFrame {
     private JTextField dateTextField;
     private JTextField stylistTextField;
     //JButtons
-    public JButton cancelButton;
+    private JButton cancelButton;
 
     public AbstractAddEditView() {
 
@@ -119,4 +120,9 @@ public abstract class AbstractAddEditView extends JFrame {
     public String getStylistInput() {
         return stylistTextField.getText();
     }
+
+    public void addCancelButtonListener(ActionListener listenerForCancelButton) {
+        this.cancelButton.addActionListener(listenerForCancelButton);
+    }
+
 }

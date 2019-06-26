@@ -5,6 +5,7 @@ import models.AppointmentAndContactData;
 import models.Contact;
 import views.AbstractAddEditView;
 import views.AddAppointmentView;
+import views.EditAppointmentView;
 import views.MainView;
 
 import javax.swing.*;
@@ -26,7 +27,7 @@ public class MainController {
         this.mainView = mView;
         this.mainView.buildView(appointmentAndContactData.getAppointments());
 
-        this.mainView.addAddAppointmentButtonListener(new AddAppointmentButtonListener(this.appointmentAndContactData));
+        this.mainView.addAddAppointmentButtonListener(new AddAppointmentButtonListener());
         this.mainView.addEditAppointmentButtonListener(new EditAppointmentButtonListener());
         this.mainView.addDeleteAppointmentButtonListener(new DeleteAppointmentButtonListener());
         this.mainView.addContactsButtonListener(new ContactsButtonListener());
@@ -34,17 +35,10 @@ public class MainController {
     }
 
     class AddAppointmentButtonListener implements ActionListener {
-
-        private AppointmentAndContactData model;
-
-        public AddAppointmentButtonListener(AppointmentAndContactData model) {
-            this.model = model;
-        }
-
         @Override
         public void actionPerformed(ActionEvent e) {
             AddAppointmentView theAddAppointmentView = new AddAppointmentView();
-            AddAppointmentController theAddAppointmentController = new AddAppointmentController(theAddAppointmentView, mainView, this.model);
+            AddAppointmentController theAddAppointmentController = new AddAppointmentController(theAddAppointmentView, mainView, appointmentAndContactData);
             theAddAppointmentView.setVisible(true);
         }
 
@@ -55,6 +49,9 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Edit Button Tapped");
+            EditAppointmentView theEditAppointmentView = new EditAppointmentView();
+            EditAppointmentController theEditAppointmentController = new EditAppointmentController(theEditAppointmentView, mainView, appointmentAndContactData);
+            theEditAppointmentView.setVisible(true);
         }
     }
 
