@@ -37,8 +37,12 @@ public class AddAppointmentController {
         public void actionPerformed(ActionEvent e) {
             if(addView.getNameInput().length() > 0 && addView.getServiceInput().length() > 0 && addView.getPhoneNumberInput().length() > 0 &&
             addView.getTimeInput().length() > 0 && addView.getDateInput().length() > 0 && addView.getStylistInput().length() > 0) {
+
                 Appointment app = new Appointment(addView.getNameInput(), addView.getServiceInput(), addView.getPhoneNumberInput(), addView.getTimeInput(), addView.getDateInput(), addView.getStylistInput());
-                model.getAppointmentDAO().insertAppointment(app);
+                int generatedID = model.getAppointmentDAO().insertAppointment(app);
+                if(generatedID != -1) {
+                    app.setId(generatedID);
+                }
                 JOptionPane.showMessageDialog(addView, "Appointment successfully added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 addView.dispose();
                 model.addAppointmentToAppointments(app);

@@ -136,26 +136,11 @@ public class MainView extends JFrame {
         if(selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "Please select an appointment to delete", "Error", JOptionPane.WARNING_MESSAGE);
         } else {
-            //selectedAppointment = getAppointmentFromSelectedRow(selectedRow);
             tableModel.removeRow(selectedRow);
         }
         Appointment selectedAppointment = appointments.get(selectedRow);
         return selectedAppointment;
     }
-
-//    public Appointment getAppointmentFromSelectedRow(int sRow) {
-//        Appointment selectedAppointment = new Appointment();
-//        int selectedRow = sRow;
-//        int columnCount = tableModel.getColumnCount();
-//        String[] appointmentFields = new String[columnCount];
-//
-//        for(int c = 0; c < columnCount; c++) {
-//            appointmentFields[c] = (String)tableModel.getValueAt(selectedRow, c);
-//        }
-//        selectedAppointment.setAppointmentWithArray(appointmentFields);
-//
-//        return selectedAppointment;
-//    }
 
     public void addAddAppointmentButtonListener(ActionListener listenerForAddAppointmentButton) {
         addAppointmentButton.addActionListener(listenerForAddAppointmentButton);

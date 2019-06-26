@@ -13,7 +13,7 @@ public interface AppointmentDAOInterface<T> {
     List<Appointment> findByService(String service);
     List<Appointment> findByDate(String date);
     List<Appointment> findByStylist(String stylist);
-    boolean insertAppointment(Appointment app);
+    int insertAppointment(Appointment app);
     boolean updateAppointment(Appointment appointment);
     boolean deleteAppointment(Appointment app);
 }

@@ -161,10 +161,10 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         return listOfAppointments;
     }
 
-    public boolean insertAppointment(Appointment appointment) {
+    public int insertAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try{
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments VALUES(NULL, ?, ?, ?, ?, ? ,?, NULL)");
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments(name, service, phoneNum, time, date, stylist) VALUES(?, ?, ?, ?, ? ,?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, appointment.getName());
             pstmt.setString(2, appointment.getService());
             pstmt.setString(3, appointment.getPhoneNum());
@@ -173,9 +173,13 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
             pstmt.setString(6, appointment.getStylist());
             //ConactID will be null for now, until I fully implement contacts
             //pstmt.setInt(7, appointment.getContact_id());
+
             int i = pstmt.executeUpdate();
+            ResultSet rs = pstmt.getGeneratedKeys();
+            rs.next();
+            System.out.println(rs.getInt(1));
             if(i == 1) {
-                return true;
+                return rs.getInt(1);
             }
             pstmt.close();
         } catch (SQLException ex) {
@@ -187,7 +191,7 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
                 ex.printStackTrace();
             }
         }
-        return false;
+        return -1;
     }
 
     public boolean updateAppointment(Appointment appointment) {
