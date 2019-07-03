@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 
 public class AddAppointmentView extends AbstractAddEditView {
     private JButton addButton;
-    private JButton cancelButton;
 
     public AddAppointmentView() {
         super();
@@ -27,17 +26,14 @@ public class AddAppointmentView extends AbstractAddEditView {
 
     @Override
     public void addComponentsToPanels() {
-        super.addComponentsToPanels();
-
         super.buttonContentPane.add(this.addButton);
-        super.buttonContentPane.add(this.cancelButton);
+        super.addComponentsToPanels();
     }
 
     @Override
     public void initializeComponents() {
         super.initializeComponents();
         this.addButton = new JButton("Add");
-        this.cancelButton = new JButton("Cancel");
     }
 
     public void addAddButtonListener(ActionListener listenerForAddButton) {

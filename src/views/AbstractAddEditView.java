@@ -89,7 +89,7 @@ public abstract class AbstractAddEditView extends JFrame {
         layout.setVerticalGroup(verticalGroup);
 
 //        this.buttonContentPane.add(this.addButton);
-//        this.buttonContentPane.add(this.cancelButton);
+        this.buttonContentPane.add(this.cancelButton);
 
         this.mainContentPane.add(this.labelAndTextFieldContentPane);
         this.mainContentPane.add(this.buttonContentPane);
@@ -119,6 +119,30 @@ public abstract class AbstractAddEditView extends JFrame {
 
     public String getStylistInput() {
         return stylistTextField.getText();
+    }
+
+    public void setNameInput(String name) {
+        nameTextField.setText(name);
+    }
+
+    public void setServiceInput(String service) {
+        serviceTextField.setText(service);
+    }
+
+    public void setPhoneNumberInput(String phoneNumber) {
+        phoneNumberTextField.setText(phoneNumber);
+    }
+
+    public void setTimeInput(String time) {
+        timeTextField.setText(time);
+    }
+
+    public void setDateInput(String date) {
+        dateTextField.setText(date);
+    }
+
+    public void setStylistInput(String stylist) {
+        stylistTextField.setText(stylist);
     }
 
     public void addCancelButtonListener(ActionListener listenerForCancelButton) {

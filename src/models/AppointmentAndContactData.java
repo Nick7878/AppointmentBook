@@ -42,4 +42,8 @@ public class AppointmentAndContactData {
     public void removeAppointmentFromAppointments(Appointment app) {
         appointments.remove(app);
     }
+
+    public void setElementAtIndex(int index, Appointment app) {
+        appointments.set(index, app);
+    }
 }

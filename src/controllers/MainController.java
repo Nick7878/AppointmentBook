@@ -49,10 +49,14 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Edit Button Tapped");
-            //if()
-            EditAppointmentView theEditAppointmentView = new EditAppointmentView();
-            EditAppointmentController theEditAppointmentController = new EditAppointmentController(theEditAppointmentView, mainView, appointmentAndContactData);
-            theEditAppointmentView.setVisible(true);
+            if(mainView.getSelectedRowIndexFromTable() == -1) {
+                JOptionPane.showMessageDialog(mainView, "Please select an appointment to edit", "Error", JOptionPane.WARNING_MESSAGE);
+            } else {
+                EditAppointmentView theEditAppointmentView = new EditAppointmentView();
+                Appointment appointmentToEdit = appointmentAndContactData.getAppointments().get(mainView.getSelectedRowIndexFromTable());
+                EditAppointmentController theEditAppointmentController = new EditAppointmentController(theEditAppointmentView, mainView, appointmentAndContactData, appointmentToEdit);
+                theEditAppointmentView.setVisible(true);
+            }
         }
     }
 
@@ -61,7 +65,7 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Delete Button Tapped");
-            if(mainView.getSelectedRowFromTable() == -1) {
+            if(mainView.getSelectedRowIndexFromTable() == -1) {
                 JOptionPane.showMessageDialog(mainView, "Please select an appointment to delete", "Error", JOptionPane.WARNING_MESSAGE);
             } else {
                 int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this appointment?");

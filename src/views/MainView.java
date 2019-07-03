@@ -127,12 +127,16 @@ public class MainView extends JFrame {
         return appointmentData;
     }
 
-    public int getSelectedRowFromTable() {
+    public int getSelectedRowIndexFromTable() {
         return appointmentTable.getSelectedRow();
     }
 
     public void updateTableValues(Appointment app) {
         tableModel.addRow(app.putAppointmentDataInArray());
+    }
+
+    public void refreshTableValues() {
+        
     }
 
     public Appointment deleteAppointmentFromSelectedRow(List<Appointment> appointments) {

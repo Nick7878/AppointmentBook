@@ -32,9 +32,8 @@ public class EditAppointmentView extends AbstractAddEditView {
 
     @Override
     public void addComponentsToPanels() {
-        super.addComponentsToPanels();
-
         super.buttonContentPane.add(this.saveButton);
+        super.addComponentsToPanels();
     }
 
     public void addSaveButtonListener(ActionListener listenerForSaveButton) {
