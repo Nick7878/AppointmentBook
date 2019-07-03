@@ -49,6 +49,7 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Edit Button Tapped");
+            //if()
             EditAppointmentView theEditAppointmentView = new EditAppointmentView();
             EditAppointmentController theEditAppointmentController = new EditAppointmentController(theEditAppointmentView, mainView, appointmentAndContactData);
             theEditAppointmentView.setVisible(true);
@@ -60,11 +61,15 @@ public class MainController {
         @Override
         public void actionPerformed(ActionEvent e) {
             System.out.println("Delete Button Tapped");
-            int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this appointment?");
-            if(confirmResult == JOptionPane.YES_OPTION) {
-                Appointment appointmentToBeDeleted = mainView.deleteAppointmentFromSelectedRow(appointmentAndContactData.getAppointments());
-                appointmentAndContactData.removeAppointmentFromAppointments(appointmentToBeDeleted);
-                appointmentAndContactData.getAppointmentDAO().deleteAppointment(appointmentToBeDeleted);
+            if(mainView.getSelectedRowFromTable() == -1) {
+                JOptionPane.showMessageDialog(mainView, "Please select an appointment to delete", "Error", JOptionPane.WARNING_MESSAGE);
+            } else {
+                int confirmResult = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete this appointment?");
+                if(confirmResult == JOptionPane.YES_OPTION) {
+                    Appointment appointmentToBeDeleted = mainView.deleteAppointmentFromSelectedRow(appointmentAndContactData.getAppointments());
+                    appointmentAndContactData.removeAppointmentFromAppointments(appointmentToBeDeleted);
+                    appointmentAndContactData.getAppointmentDAO().deleteAppointment(appointmentToBeDeleted);
+                }
             }
         }
     }

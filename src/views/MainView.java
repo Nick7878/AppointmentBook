@@ -127,17 +127,17 @@ public class MainView extends JFrame {
         return appointmentData;
     }
 
+    public int getSelectedRowFromTable() {
+        return appointmentTable.getSelectedRow();
+    }
+
     public void updateTableValues(Appointment app) {
         tableModel.addRow(app.putAppointmentDataInArray());
     }
 
     public Appointment deleteAppointmentFromSelectedRow(List<Appointment> appointments) {
         int selectedRow = appointmentTable.getSelectedRow();
-        if(selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select an appointment to delete", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            tableModel.removeRow(selectedRow);
-        }
+        tableModel.removeRow(selectedRow);
         Appointment selectedAppointment = appointments.get(selectedRow);
         return selectedAppointment;
     }
