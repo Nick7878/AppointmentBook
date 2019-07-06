@@ -25,14 +25,14 @@ public class EditAppointmentView extends AbstractAddEditView {
         setResizable(false);
         setLocationRelativeTo(null);
 
-        add(super.mainContentPane);
+        add(super.getMainContentPane());
         pack();
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 
     @Override
     public void addComponentsToPanels() {
-        super.buttonContentPane.add(this.saveButton);
+        super.getButtonContentPane().add(this.saveButton);
         super.addComponentsToPanels();
     }
 

@@ -2,7 +2,6 @@ package models;
 
 import interfaces.AppointmentDAOInterface;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;

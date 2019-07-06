@@ -3,7 +3,6 @@ package controllers;
 import models.Appointment;
 import models.AppointmentAndContactData;
 import models.Contact;
-import views.AbstractAddEditView;
 import views.AddAppointmentView;
 import views.EditAppointmentView;
 import views.MainView;
@@ -11,7 +10,6 @@ import views.MainView;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 public class MainController {
     private AppointmentAndContactData appointmentAndContactData;

@@ -94,7 +94,6 @@ public class MainView extends JFrame {
         columnModel.getColumn(4).setPreferredWidth(200);
         columnModel.getColumn(5).setPreferredWidth(100);
         appointmentTable.setBounds(30, 40, 200, 300);
-        JScrollPane sp = new JScrollPane(appointmentTable);
 
     }
 
@@ -121,6 +120,8 @@ public class MainView extends JFrame {
                     case 5:
                         appointmentData[numberOfAppointments][columns] = appointments.get(numberOfAppointments).getStylist();
                         break;
+                    default:
+                        appointmentData[numberOfAppointments][columns] = "couldn't get data";
                 }
             }
         }
@@ -136,14 +137,13 @@ public class MainView extends JFrame {
     }
 
     public void refreshTableValues() {
-        
+
     }
 
     public Appointment deleteAppointmentFromSelectedRow(List<Appointment> appointments) {
         int selectedRow = appointmentTable.getSelectedRow();
         tableModel.removeRow(selectedRow);
-        Appointment selectedAppointment = appointments.get(selectedRow);
-        return selectedAppointment;
+        return appointments.get(selectedRow);
     }
 
     public void addAddAppointmentButtonListener(ActionListener listenerForAddAppointmentButton) {

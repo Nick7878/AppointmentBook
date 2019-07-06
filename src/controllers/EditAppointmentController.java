@@ -57,14 +57,8 @@ public class EditAppointmentController {
                 appointmentToEdit.setDate(editView.getDateInput());
                 appointmentToEdit.setStylist(editView.getStylistInput());
 
-//                int generatedID = model.getAppointmentDAO().insertAppointment(app);
-//                if(generatedID != -1) {
-//                    app.setId(generatedID);
-//                }
                 JOptionPane.showMessageDialog(editView, "Appointment successfully saved.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 editView.dispose();
-                //model.addAppointmentToAppointments(app);
-                //mainView.updateTableValues(app);
                 model.setElementAtIndex(mainView.getSelectedRowIndexFromTable(), appointmentToEdit);
                 model.getAppointmentDAO().updateAppointment(appointmentToEdit);
                 mainView.refreshTableValues();

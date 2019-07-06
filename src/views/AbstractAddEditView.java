@@ -6,9 +6,9 @@ import java.awt.event.ActionListener;
 
 public abstract class AbstractAddEditView extends JFrame {
     //JPanels
-    public JPanel mainContentPane;
+    private JPanel mainContentPane;
     private JPanel labelAndTextFieldContentPane;
-    public JPanel buttonContentPane;
+    private JPanel buttonContentPane;
     //Layouts
     private GroupLayout layout;
     //JLabels
@@ -88,7 +88,6 @@ public abstract class AbstractAddEditView extends JFrame {
 
         layout.setVerticalGroup(verticalGroup);
 
-//        this.buttonContentPane.add(this.addButton);
         this.buttonContentPane.add(this.cancelButton);
 
         this.mainContentPane.add(this.labelAndTextFieldContentPane);
@@ -147,6 +146,14 @@ public abstract class AbstractAddEditView extends JFrame {
 
     public void addCancelButtonListener(ActionListener listenerForCancelButton) {
         this.cancelButton.addActionListener(listenerForCancelButton);
+    }
+
+    public JPanel getMainContentPane() {
+        return this.mainContentPane;
+    }
+
+    public JPanel getButtonContentPane() {
+        return this.buttonContentPane;
     }
 
 }
