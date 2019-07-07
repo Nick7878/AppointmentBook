@@ -46,7 +46,7 @@ public class AddAppointmentController {
                 JOptionPane.showMessageDialog(addView, "Appointment successfully added.", "Success", JOptionPane.INFORMATION_MESSAGE);
                 addView.dispose();
                 model.addAppointmentToAppointments(app);
-                mainView.updateTableValues(app);
+                mainView.updateTableValuesAfterAdd(app);
             } else {
                 JOptionPane.showMessageDialog(addView, "All fields must have a value entered.", "Warning", JOptionPane.WARNING_MESSAGE);
             }

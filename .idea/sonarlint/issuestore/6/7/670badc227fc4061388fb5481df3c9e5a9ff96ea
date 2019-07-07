@@ -1,0 +1,45 @@
+
+^squid:S2095u"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(¶ë‰Ş
+P
+squid:S106°"9Replace this use of System.out or System.err by a logger.(·Áà
+:squid:S1148P"#Use a logger to log this exception.(Ç’Çê
+Bsquid:S1168S"+Return an empty collection instead of null.(¥¹ï
+ksquid:S2095Y"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ÃÒóëşÿÿÿÿ
+dsquid:S2095³"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(‡²«üÿÿÿÿ
+;squid:S1148î"#Use a logger to log this exception.(Ç’Çê
+:squid:S1148K"#Use a logger to log this exception.(Ç’Çê
+:squid:S1148"#Use a logger to log this exception.(Ç’Çê
+^squid:S2095A"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(¶ë‰Ş
+gsquid:S2095¦"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(«½æ“
+:squid:S1148d"#Use a logger to log this exception.(Ç’Çê
+:squid:S1148"#Use a logger to log this exception.(Ç’Çê
+^squid:S2095["GUse try-with-resources or close this "ResultSet" in a "finally" clause.(¶ë‰Ş
+:squid:S11481"#Use a logger to log this exception.(Ç’Çê
+csquid:S2095"GUse try-with-resources or close this "Statement" in a "finally" clause.(õ½ÛØşÿÿÿÿ
+:squid:S1148~"#Use a logger to log this exception.(Ç’Çê
+;squid:S1148"#Use a logger to log this exception.(Ç’Çê
+nsquid:S2077("RUse a variable binding mechanism to construct this query instead of concatenation.(—±Ä¢ûÿÿÿÿ
+lsquid:S2095É"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(¸î¨ùÿÿÿÿ
+Bsquid:S1168l"+Return an empty collection instead of null.(¥¹ï
+gsquid:S2095"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ß¨‘¦
+csquid:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(ì¹´¯şÿÿÿÿ
+P
+squid:S106µ"9Replace this use of System.out or System.err by a logger.(¼®´·
+;squid:S1148˜"#Use a logger to log this exception.(Ç’Çê
+:squid:S11486"#Use a logger to log this exception.(Ç’Çê
+;squid:S1148À"#Use a logger to log this exception.(Ç’Çê
+_squid:S2095"GUse try-with-resources or close this "ResultSet" in a "finally" clause.(¶ë‰Ş
+;squid:S1148Ø"#Use a logger to log this exception.(Ç’Çê
+;squid:S1148İ"#Use a logger to log this exception.(Ç’Çê
+nsquid:S00117<"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Õûíâúÿÿÿÿ
+fsquid:S2095s"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(úµ‘Ã
+;squid:S1148»"#Use a logger to log this exception.(Ç’Çê
+ksquid:S2095?"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(€§û—øÿÿÿÿ
+;squid:S1148ó"#Use a logger to log this exception.(Ç’Çê
+csquid:CommentedOutCodeLine®"<This block of commented-out lines of code should be removed.(Î­¶á
+Bsquid:S1168!"+Return an empty collection instead of null.(¥¹ï
+:squid:S1148i"#Use a logger to log this exception.(Ç’Çê
+csquid:S2095'"GUse try-with-resources or close this "Statement" in a "finally" clause.(õ½ÛØşÿÿÿÿ
+gsquid:S2095æ"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(ö©à“
+csquid:S2095("GUse try-with-resources or close this "ResultSet" in a "finally" clause.(—±Ä¢ûÿÿÿÿ
+;squid:S1148ƒ"#Use a logger to log this exception.(Ç’Çê

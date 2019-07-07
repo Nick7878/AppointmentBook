@@ -61,7 +61,7 @@ public class EditAppointmentController {
                 editView.dispose();
                 model.setElementAtIndex(mainView.getSelectedRowIndexFromTable(), appointmentToEdit);
                 model.getAppointmentDAO().updateAppointment(appointmentToEdit);
-                mainView.refreshTableValues();
+                mainView.setRowWithAppointmentDataAfterEdit(appointmentToEdit, mainView.getSelectedRowIndexFromTable());
             } else {
                 JOptionPane.showMessageDialog(editView, "All fields must have a value entered.", "Warning", JOptionPane.WARNING_MESSAGE);
             }
