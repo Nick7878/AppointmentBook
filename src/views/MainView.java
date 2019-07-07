@@ -94,7 +94,6 @@ public class MainView extends JFrame {
         columnModel.getColumn(4).setPreferredWidth(200);
         columnModel.getColumn(5).setPreferredWidth(100);
         appointmentTable.setBounds(30, 40, 200, 300);
-        JScrollPane sp = new JScrollPane(appointmentTable);
 
     }
 
@@ -121,25 +120,33 @@ public class MainView extends JFrame {
                     case 5:
                         appointmentData[numberOfAppointments][columns] = appointments.get(numberOfAppointments).getStylist();
                         break;
+                    default:
+                        appointmentData[numberOfAppointments][columns] = "couldn't get data";
                 }
             }
         }
         return appointmentData;
     }
 
-    public void updateTableValues(Appointment app) {
+    public int getSelectedRowIndexFromTable() {
+        return appointmentTable.getSelectedRow();
+    }
+
+    public void updateTableValuesAfterAdd(Appointment app) {
         tableModel.addRow(app.putAppointmentDataInArray());
+    }
+
+    public void setRowWithAppointmentDataAfterEdit(Appointment app, int selectedRowIndex) {
+        String[] appointmentData = app.putAppointmentDataInArray();
+        for(int c = 0; c < 6; c++) {
+            tableModel.setValueAt(appointmentData[c], selectedRowIndex, c);
+        }
     }
 
     public Appointment deleteAppointmentFromSelectedRow(List<Appointment> appointments) {
         int selectedRow = appointmentTable.getSelectedRow();
-        if(selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "Please select an appointment to delete", "Error", JOptionPane.WARNING_MESSAGE);
-        } else {
-            tableModel.removeRow(selectedRow);
-        }
-        Appointment selectedAppointment = appointments.get(selectedRow);
-        return selectedAppointment;
+        tableModel.removeRow(selectedRow);
+        return appointments.get(selectedRow);
     }
 
     public void addAddAppointmentButtonListener(ActionListener listenerForAddAppointmentButton) {

@@ -2,7 +2,6 @@ package models;
 
 import interfaces.AppointmentDAOInterface;
 
-import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -173,6 +172,8 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
             pstmt.setString(6, appointment.getStylist());
             //ConactID will be null for now, until I fully implement contacts
             //pstmt.setInt(7, appointment.getContact_id());
+
+            System.out.println("Branch Test");
 
             int i = pstmt.executeUpdate();
             ResultSet rs = pstmt.getGeneratedKeys();

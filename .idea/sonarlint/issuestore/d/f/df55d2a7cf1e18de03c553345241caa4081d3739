@@ -1,0 +1,12 @@
+
+O
+squid:S106A"9Replace this use of System.out or System.err by a logger.(±À«ì
+T
+squid:S106S"9Replace this use of System.out or System.err by a logger.(ğ²õ›ıÿÿÿÿ
+fsquid:S1854'"ORemove this useless assignment to local variable "theAddAppointmentController".(è–¾Ğ
+Osquid:UselessImportCheck"+Remove this unused import 'models.Contact'.(Ä´ƒö
+V
+squid:S1061"9Replace this use of System.out or System.err by a logger.(Ñğ ö8ò¤œÃ¼-
+lsquid:S18547"PRemove this useless assignment to local variable "theEditAppointmentController".(œšÜÿÿÿÿÿ
+]squid:S14817"ARemove this unused "theEditAppointmentController" local variable.(œšÜÿÿÿÿÿ
+Wsquid:S1481'"@Remove this unused "theAddAppointmentController" local variable.(è–¾Ğ
