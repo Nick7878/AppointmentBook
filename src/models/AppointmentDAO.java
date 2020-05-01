@@ -37,7 +37,7 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
         Connection connection = ConnectionFactory.getConnection();
         try{
             Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM appointments WHERE appointment_id = " + id);
+            ResultSet rs = stmt.executeQuery("SELECT * FROM appointments WHERE appointmentID = " + id);
             Appointment appointment = new Appointment();
             if(rs.next()) {
                 appointment = extractAppointmentFromResultSet(rs);
@@ -60,7 +60,7 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     public List<Appointment> findByContactId(int contact_id) {
         Connection connection = ConnectionFactory.getConnection();
         try {
-            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE contact_id = ?");
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM appointments WHERE contactID = ?");
             pstmt.setInt(1, contact_id);
             ResultSet rs = pstmt.executeQuery();
             List<Appointment> listOfAppointments = new ArrayList<>();
@@ -163,7 +163,7 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     public int insertAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try{
-            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments(name, service, phoneNum, time, date, stylist) VALUES(?, ?, ?, ?, ? ,?)", Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement pstmt = connection.prepareStatement("INSERT INTO appointments(name, service, phoneNumber, time, date, stylist) VALUES(?, ?, ?, ?, ? ,?)", Statement.RETURN_GENERATED_KEYS);
             pstmt.setString(1, appointment.getName());
             pstmt.setString(2, appointment.getService());
             pstmt.setString(3, appointment.getPhoneNum());
@@ -197,7 +197,7 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     public boolean updateAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try{
-            PreparedStatement pstmt = connection.prepareStatement("UPDATE appointments SET name = ?, service = ?, phoneNum = ?, time = ?, date = ?, stylist = ?, contact_id = ? WHERE appointment_id = ?");
+            PreparedStatement pstmt = connection.prepareStatement("UPDATE appointments SET name = ?, service = ?, phoneNumber = ?, time = ?, date = ?, stylist = ?, contact_id = ? WHERE appointmentID = ?");
             pstmt.setString(1, appointment.getName());
             pstmt.setString(2, appointment.getService());
             pstmt.setString(3, appointment.getPhoneNum());
@@ -226,7 +226,7 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
     public boolean deleteAppointment(Appointment appointment) {
         Connection connection = ConnectionFactory.getConnection();
         try {
-            PreparedStatement pstmt = connection.prepareStatement("DELETE FROM appointments WHERE appointment_id = ?");
+            PreparedStatement pstmt = connection.prepareStatement("DELETE FROM appointments WHERE appointmentID = ?");
             pstmt.setInt(1, appointment.getId());
             int i = pstmt.executeUpdate();
             if(i == 1) {
@@ -247,14 +247,14 @@ public class AppointmentDAO implements AppointmentDAOInterface<Appointment> {
 
     private Appointment extractAppointmentFromResultSet(ResultSet rs) throws SQLException {
         Appointment appointment = new Appointment();
-        appointment.setId(rs.getInt("appointment_id")); //Column name may need to be changed
+        appointment.setId(rs.getInt("appointmentID")); //Column name may need to be changed
         appointment.setName(rs.getString("name"));
         appointment.setService(rs.getString("service"));
-        appointment.setPhoneNum(rs.getString("phoneNum"));
+        appointment.setPhoneNum(rs.getString("phoneNumber"));
         appointment.setTime(rs.getString("time"));
         appointment.setDate(rs.getString("date"));
         appointment.setStylist(rs.getString("stylist"));
-        appointment.setContact_id(rs.getInt("contact_id"));
+        appointment.setContact_id(rs.getInt("contactID"));
 
         return appointment;
     }
